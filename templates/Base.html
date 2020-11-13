@@ -8,8 +8,20 @@
   </head>
   <body>
     <header>
-      <h2><a href="{% url 'home' %}">Home</a></h2>
+      <div class="">
+        <h2><a href="{% url 'home' %}">Home</a></h2>
+      </div>
+      <div class="">
+        <h2><a href="{% url 'post_new' %}">New Blog</a></h2>
+      </div>
     </header>
+    {% if user.is_authenticated %}
+     <p>Hi {{ user.username }}!</p>
+     <a href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+      <p>You are not logged in.</p>
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
     <div class="">
       {% block content %}
       {% endblock content %}
